@@ -41,11 +41,13 @@ public class BlackJackGame {
         }
         dealer.play();
         System.out.println("---------------------Game Over---------------------");
-        System.out.printf("Dealer | Total: %d | \n", dealer.getTotal());
+        System.out.printf("Dealer | Total: %d\n", dealer.getTotal());
         //Calculating if players won
         for (int i = 0; i < controllers.size(); i++) {
             String didWin;
-            if (controllers.get(i).getTotal() <= 21 && controllers.get(i).getTotal() > dealer.getTotal()) {
+            if (dealer.getTotal() > 21 && controllers.get(i).getTotal() <= 21) {
+                didWin = "Winner!";
+            } else if (controllers.get(i).getTotal() <= 21 && controllers.get(i).getTotal() > dealer.getTotal()) {
                 didWin = "Winner!";
             } else {
                 didWin = "Loser!";

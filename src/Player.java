@@ -3,15 +3,17 @@ import java.util.Scanner;
 
 public class Player implements Controller {
     public ArrayList<Card> hand;
-    private int total;
 
     public Player() {
         this.hand = new ArrayList<>();
-        this.total = 0;
     }
 
     @Override
     public int getTotal() {
+        int total = 0;
+        for (Card c : hand) {
+            total += c.value.val;
+        }
         //Checking if ace
         //If so, remove 10 from the total
         if (total > 21) {
@@ -29,6 +31,7 @@ public class Player implements Controller {
     public void play() {
         boolean isRunning = true;
         while (isRunning) {
+            System.out.println(this);
             System.out.printf("Total: %d\n", getTotal());
             if (getTotal() == 21) {
                 System.out.println("You have 21. Ending turn.");
@@ -55,7 +58,6 @@ public class Player implements Controller {
     @Override
     public void addCard(Card c) {
         this.hand.add(c);
-        this.total += c.value.val;
     }
 
 //    @Override
